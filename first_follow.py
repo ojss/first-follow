@@ -41,7 +41,7 @@ for rule in rules:
     if rule[0][3].isupper():
         firsts_dict[rule[0][0]].extend(firsts_dict[rule[0][3]])
 
-with open("firsts.txt", "w") as wp:
+with open("firsts.txt", "w+") as wp:
     for k in firsts_dict:
         wp.write("first(%s): \t " % k)
         wp.write("%s\n" % firsts_dict[k])
