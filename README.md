@@ -1,0 +1,1 @@
+# Simple python script that generates the first and follow for a given grammar
