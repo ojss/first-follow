@@ -1,20 +1,23 @@
 # Author Ojas Shirekar
-
+# Under the GPL license
+from collections import OrderedDict
 # Opening the rules file, doing it the hard coded way for development
 
 
-rules = []
+rules = []  # Raw grammar rules
 firsts = []
-rules_dict = {}
-firsts_dict = {}
+
+# Ordered dictionary to maintain the order of saving in the dictionary, useful when doing the actual
+# first finding in one pass.
+rules_dict = OrderedDict()  # Dictionary to store all the rules in the grammar
+firsts_dict = OrderedDict()  # Dictionary to store all the firsts
 
 
 def non_term_appender(firsts, rules):
     for rule in rules:
         if (rule[0][0] not in firsts):
             firsts.append(rule[0][0])
-            # firsts_dict[rule[0][0]] = []
-            firsts_dict.update({rule[0][0]: []})
+            firsts_dict[rule[0][0]] = []
 
 
 with open("rules_test.txt", "r") as fp:
@@ -33,7 +36,7 @@ for first in firsts:
 for rule in rules:
     if (rule[0][3].islower()):
         firsts_dict[rule[0][0]].append(rule[0][3])
-
+# TODO try and re implement one pass, as an else condition in the above loop.
 for rule in rules:
     if rule[0][3].isupper():
         firsts_dict[rule[0][0]].extend(firsts_dict[rule[0][3]])
@@ -42,3 +45,5 @@ with open("firsts.txt", "w") as wp:
     for k in firsts_dict:
         wp.write("first(%s): \t " % k)
         wp.write("%s\n" % firsts_dict[k])
+
+print(firsts_dict)
