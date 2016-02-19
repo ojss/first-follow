@@ -40,7 +40,7 @@ for first in firsts:
 
 for rule in rules:
     if rule[0][3].islower():
-        firsts_dict[rule[0][0]].append(rule[0][3])
+        firsts_dict[rule[0][0]].extend(rule[0][3])
 # TODO try and re implement one pass, as an else condition in the above loop.
 for rule in rules:
     if rule[0][3].isupper():
@@ -60,4 +60,6 @@ for k in rules_dict:
         follow_dict[k].append('$')
     for i in xrange(key_count):
         if rules_keys[i] in tmp_rule_str:
-            print firsts_dict[rules_keys[(i + 1) % key_count]]
+            follow_dict[rules_keys[i]].extend(
+                firsts_dict[rules_keys[(i + 1) % key_count]])
+print follow_dict
