@@ -7,7 +7,7 @@ from collections import OrderedDict
 
 
 rules = []  # Raw grammar rules
-firsts = []
+firsts = []  # Used as temp storage for firsts if needed
 
 # Ordered dictionary to maintain the order of saving in the dictionary
 # useful when doing the actual first finding in one pass.
@@ -66,3 +66,4 @@ with open("follows.txt", "w+") as wp:
     for k in follow_dict:
         wp.write("follow(%s): \t" % k)
         wp.write("%s\n" % follow_dict[k])
+print follow_dict
