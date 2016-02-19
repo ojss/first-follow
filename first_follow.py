@@ -31,7 +31,6 @@ with open("rules_test.txt", "r") as fp:
         rules.append(line.strip().split('\n'))
 
 number_of_rules = len(rules)
-# Printing the array
 rule_count = first_count = 0
 non_term_appender(firsts, rules)
 for first in firsts:
@@ -62,4 +61,8 @@ for k in rules_dict:
         if rules_keys[i] in tmp_rule_str:
             follow_dict[rules_keys[i]].extend(
                 firsts_dict[rules_keys[(i + 1) % key_count]])
-print follow_dict
+
+with open("follows.txt", "w+") as wp:
+    for k in follow_dict:
+        wp.write("follow(%s): \t" % k)
+        wp.write("%s\n" % follow_dict[k])
