@@ -69,9 +69,9 @@ for k in rules_dict:
             current_non_term_index = tmp_rule_list.index(rules_keys[i])
 
             if current_non_term_index == (len(tmp_rule_list) - 1):
-                # if the index of the current non-term is at last one, means that
-                # the follow for the current non-term will be the follow of the
-                # left-hand side
+                # if the index of the current non-term is at last one,
+                #  means that the follow for the current non-term will be the
+                # follow of the left-hand side
                 follow_dict[rules_keys[i]].extend(follow_dict[rules_keys[0]])
             else:
                 # If not then the first of the next non-term from the current
