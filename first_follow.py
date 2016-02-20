@@ -83,5 +83,5 @@ with open("follows.txt", "w+") as wp:
     for k in follow_dict:
         wp.write("follow(%s): \t" % k)
         wp.write("%s\n" % follow_dict[k])
-print "Firsts Dict:" + " " + follow_dict
-print "Follow Dict:" + " " + firsts_dict
+print "Firsts Dict:" + " ", follow_dict
+print "Follow Dict:" + " ", firsts_dict
