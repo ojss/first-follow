@@ -16,6 +16,13 @@ firsts_dict = OrderedDict()  # Dictionary to store all the firsts
 follow_dict = OrderedDict()  # Dictionary that stores all follows
 
 
+def write_dict(dict, file_name):
+    with open(file_name, "w+") as write_ptr:
+        for k in dict:
+            write_ptr.write("%s\t" % k)
+            write_ptr.write("%s\n" % dict[k])
+
+
 def non_term_appender(firsts, rules):
     """Adds the non terminals on the left to the firsts_dict"""
     for rule in rules:
@@ -68,7 +75,7 @@ for k in rules_dict:
             # variable
             current_non_term_index = tmp_rule_list.index(rules_keys[i])
 
-            if current_non_term_index == (len(tmp_rule_list) - 1):
+            if current_non_term_index == (len(tmp_rule_list) - 1) and tmp_rule_list[current_non_term_index].isupper():
                 # if the index of the current non-term is at last one,
                 #  means that the follow for the current non-term will be the
                 # follow of the left-hand side
@@ -85,3 +92,6 @@ with open("follows.txt", "w+") as wp:
         wp.write("%s\n" % follow_dict[k])
 print "Firsts Dict:" + " ", follow_dict
 print "Follow Dict:" + " ", firsts_dict
+
+write_dict(follow_dict, "test")
+write_dict(firsts_dict, "test2")
