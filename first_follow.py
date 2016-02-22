@@ -16,10 +16,10 @@ firsts_dict = OrderedDict()  # Dictionary to store all the firsts
 follow_dict = OrderedDict()  # Dictionary that stores all follows
 
 
-def write_dict(dict, file_name):
+def write_dict(dict, type_found, file_name):
     with open(file_name, "w+") as write_ptr:
         for k in dict:
-            write_ptr.write("%s\t" % k)
+            write_ptr.write("%s(%s)\t" % (type_found, k))
             write_ptr.write("%s\n" % dict[k])
 
 
@@ -93,5 +93,5 @@ with open("follows.txt", "w+") as wp:
 print "Firsts Dict:" + " ", follow_dict
 print "Follow Dict:" + " ", firsts_dict
 
-write_dict(follow_dict, "test")
-write_dict(firsts_dict, "test2")
+write_dict(follow_dict, "follow", "firsts.txt")
+write_dict(firsts_dict, "first", "follows.txt")
