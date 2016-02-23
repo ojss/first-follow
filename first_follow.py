@@ -1,6 +1,8 @@
 """Finds the first and follow for a given grammar"""
 # Author Ojas Shirekar
 # Under the GPL license
+
+# TODO use a special character of epsilon.
 from collections import OrderedDict
 
 # Opening the rules file, doing it the hard coded way for development
@@ -17,6 +19,7 @@ follow_dict = OrderedDict()  # Dictionary that stores all follows
 
 
 def write_dict(dict, type_found, file_name):
+    """Prints the given dictionary to a file"""
     with open(file_name, "w+") as write_ptr:
         for k in dict:
             write_ptr.write("%s(%s)\t" % (type_found, k))
@@ -75,7 +78,8 @@ for k in rules_dict:
             # variable
             current_non_term_index = tmp_rule_list.index(rules_keys[i])
 
-            if current_non_term_index == (len(tmp_rule_list) - 1) and tmp_rule_list[current_non_term_index].isupper():
+            if (current_non_term_index == (len(tmp_rule_list) - 1)and
+                    tmp_rule_list[current_non_term_index].isupper()):
                 # if the index of the current non-term is at last one,
                 #  means that the follow for the current non-term will be the
                 # follow of the left-hand side
